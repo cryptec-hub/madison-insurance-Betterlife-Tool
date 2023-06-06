@@ -1,6 +1,7 @@
 import React from "react";
 import Select from "react-select";
 import { useState } from "react";
+import { getRowAndColumn } from "../xlsx/readData";
 
 export default function SelectComponent({
   inPatient,
@@ -93,6 +94,13 @@ export default function SelectComponent({
     maternitySelected
   );
   const opticalFinalValue = getSelectedValue(opticalValue, opticalSelected);
+
+  // Example usage
+
+  const sheetName = "Inpatient Rates";
+  const targetValue = "Some Value";
+
+  getRowAndColumn(sheetName, targetValue);
 
   return (
     <div className="flex flex-col justify-between items-center">
