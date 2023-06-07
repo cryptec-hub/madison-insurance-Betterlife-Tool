@@ -53,6 +53,7 @@ const Members = [
   { value: "M+3", label: "M+3" },
   { value: "M+4", label: "M+4" },
   { value: "M+5", label: "M+5" },
+  { value: "M+6", label: "M+6" },
 ];
 
 export { inPatient, outPatient, Dental, Maternity, Optical, Members };

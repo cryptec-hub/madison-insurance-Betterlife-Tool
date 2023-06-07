@@ -1,7 +1,9 @@
 import React from "react";
 import Select from "react-select";
 import { useState } from "react";
-import { getRowAndColumn } from "../xlsx/readData";
+// import { extractValues } from "../ExtractValues";
+import IntersectionValueComponent from "../xlsx/IntersectionValue";
+// import ReadData from "../xlsx/readData";
 
 export default function SelectComponent({
   inPatient,
@@ -35,6 +37,9 @@ export default function SelectComponent({
     value: 200000,
     label: "200,000",
   });
+
+  // const [inPatientAmount, setInPatientAmount] = useState(0);
+
   const [outPatientSelected, setOutPatientSelected] = useState(false);
   const [dentalSelected, setDentalSelected] = useState(false);
   const [opticalSelected, setOpticalSelected] = useState(false);
@@ -95,13 +100,6 @@ export default function SelectComponent({
   );
   const opticalFinalValue = getSelectedValue(opticalValue, opticalSelected);
 
-  // Example usage
-
-  const sheetName = "Inpatient Rates";
-  const targetValue = "Some Value";
-
-  getRowAndColumn(sheetName, targetValue);
-
   return (
     <div className="flex flex-col justify-between items-center">
       <div className="w-1/2 flex items-center space-x-2 pt-8">
@@ -125,6 +123,7 @@ export default function SelectComponent({
             onChange={handleInPatientChange}
           />
         </div>
+        {/* <p>{inPatientAmount}</p> */}
       </div>
 
       <div className="w-1/2 flex items-center space-x-2 pt-8">
@@ -202,6 +201,10 @@ export default function SelectComponent({
         <p>Maternity Final Value: {maternityFinalValue}</p>
         <p>Optical Final Value: {opticalFinalValue}</p>
       </div>
+      <IntersectionValueComponent
+        limitValue={inPatientValue.value}
+        colValue={numberOfMembers.value}
+      />
     </div>
   );
 }

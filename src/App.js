@@ -1,5 +1,5 @@
 import "./App.css";
-import SelectComponent from "./components/selectComponent";
+import SelectComponent from "./components/SelectComponent";
 import {
   inPatient,
   outPatient,
