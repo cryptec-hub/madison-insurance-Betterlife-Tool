@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
+import AnimatedNumbers from "react-animated-numbers";
 
-function IntersectionValueComponent({ limitValue, colValue }) {
+function IntersectionValueComponent({ limitValue, colValue, sheetNumber }) {
   const [intersectionValue, setIntersectionValue] = useState(null);
+  const key = `${limitValue}-${colValue}-${sheetNumber}`;
 
   useEffect(() => {
     async function fetchData() {
@@ -13,30 +15,24 @@ function IntersectionValueComponent({ limitValue, colValue }) {
         const buffer = await response.arrayBuffer();
         const workbook = XLSX.read(buffer, { type: "buffer" });
 
-        const sheetName = workbook.SheetNames[0];
+        const sheetName = workbook.SheetNames[sheetNumber];
         const sheet = workbook.Sheets[sheetName];
         const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 2 });
 
-        // Filter out empty rows or rows with undefined values
-        const filteredData = jsonData.filter((row) => {
-          return Object.values(row).some(
+        const filteredData = jsonData.filter((row) =>
+          Object.values(row).some(
             (value) => value !== undefined && value !== ""
-          );
-        });
-
-        // console.log(filteredData);
+          )
+        );
 
         const getValueAtIntersection = (limitValue, colValue) => {
           if (!Array.isArray(filteredData)) return null;
 
-          // Find the object that contains the specified limitValue
           const rowObject = filteredData.find(
             (row) => row.Limit === limitValue
           );
-
           if (!rowObject) return null;
 
-          // Check if the intersection property exists for the specified colValue
           const numberOfMembersValue = rowObject[colValue];
           if (
             numberOfMembersValue === undefined ||
@@ -48,7 +44,7 @@ function IntersectionValueComponent({ limitValue, colValue }) {
         };
 
         const intersectionValue = getValueAtIntersection(limitValue, colValue);
-        setIntersectionValue(intersectionValue);
+        setIntersectionValue(intersectionValue || 0);
       } catch (error) {
         console.error("Error loading Excel file:", error.message);
         setIntersectionValue(null);
@@ -56,16 +52,18 @@ function IntersectionValueComponent({ limitValue, colValue }) {
     }
 
     fetchData();
-  }, [limitValue, colValue]);
+  }, [limitValue, colValue, sheetNumber]);
 
   return (
-    <div>
-      <h2>Intersection Value</h2>
-      <p>Limit Value: {limitValue}</p>
-      <p>Column Value: {colValue}</p>
-      <p>Intersection Value: {intersectionValue}</p>
+    <div key={key}>
+      <AnimatedNumbers
+        includeComma
+        animateToNumber={intersectionValue}
+        fontStyle={{ fontSize: 20 }}
+        locale="en-US"
+      ></AnimatedNumbers>
     </div>
   );
 }
 
-export default IntersectionValueComponent;
+export default React.memo(IntersectionValueComponent);

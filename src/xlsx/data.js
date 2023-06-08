@@ -6,7 +6,8 @@ const inPatient = [
   { value: 1000000, label: "1,000,000" },
   { value: 750000, label: "750,000" },
   { value: 500000, label: "500,000" },
-  { value: 250000, label: "250,000" },
+  { value: 300000, label: "300,000" },
+  { value: 200000, label: "200,000" },
 ];
 
 const outPatient = [

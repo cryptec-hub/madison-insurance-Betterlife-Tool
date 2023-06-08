@@ -114,7 +114,7 @@ export default function SelectComponent({
         </div>
       </div>
       <div className="w-1/2 flex items-center space-x-2 pt-8">
-        <h1 className="mr-14 w-1/4 text-lg">Inpatient</h1>
+        <h1 className="mr-2 w-1/4 text-lg">Inpatient</h1>
         <div className="w-full flex items-center  space-x-2">
           <Select
             className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
@@ -123,7 +123,16 @@ export default function SelectComponent({
             onChange={handleInPatientChange}
           />
         </div>
-        {/* <p>{inPatientAmount}</p> */}
+
+        <div className="w-28 mr-20">
+          <div className="border border-gray-300 rounded-md p-2">
+            <IntersectionValueComponent
+              limitValue={inPatientValue.value}
+              colValue={numberOfMembers.value}
+              sheetNumber={0}
+            />
+          </div>
+        </div>
       </div>
 
       <div className="w-1/2 flex items-center space-x-2 pt-8">
@@ -140,6 +149,15 @@ export default function SelectComponent({
             value={outPatientValue}
             onChange={handleOutPatientChange}
           />
+        </div>
+        <div className="w-28 mr-20">
+          <div className="border border-gray-300 rounded-md p-2">
+            <IntersectionValueComponent
+              limitValue={outPatientFinalValue}
+              colValue={numberOfMembers.value}
+              sheetNumber={2}
+            />
+          </div>
         </div>
       </div>
 
@@ -158,6 +176,15 @@ export default function SelectComponent({
             className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>
+        <div className="w-28 mr-20">
+          <div className="border border-gray-300 rounded-md p-2">
+            <IntersectionValueComponent
+              limitValue={dentalFinalValue}
+              colValue={numberOfMembers.value}
+              sheetNumber={4}
+            />
+          </div>
+        </div>
       </div>
 
       <div className="w-1/2 flex items-center justify-between space-x-2 pt-8">
@@ -174,6 +201,15 @@ export default function SelectComponent({
             onChange={handleOpticalChange}
             className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
           />
+        </div>
+        <div className="w-28 mr-20">
+          <div className="border border-gray-300 rounded-md p-2">
+            <IntersectionValueComponent
+              limitValue={opticalFinalValue}
+              colValue={numberOfMembers.value}
+              sheetNumber={4}
+            />
+          </div>
         </div>
       </div>
 
@@ -192,19 +228,16 @@ export default function SelectComponent({
             className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>
+        <div className="w-28 mr-20">
+          <div className="border border-gray-300 rounded-md p-2">
+            <IntersectionValueComponent
+              limitValue={maternityFinalValue}
+              colValue={"Premiums"}
+              sheetNumber={6}
+            />
+          </div>
+        </div>
       </div>
-
-      <div className="mt-4">
-        <p>Inpatient Final Value: {inPatientValue.value}</p>
-        <p>Outpatient Final Value: {outPatientFinalValue}</p>
-        <p>Dental Final Value: {dentalFinalValue}</p>
-        <p>Maternity Final Value: {maternityFinalValue}</p>
-        <p>Optical Final Value: {opticalFinalValue}</p>
-      </div>
-      <IntersectionValueComponent
-        limitValue={inPatientValue.value}
-        colValue={numberOfMembers.value}
-      />
     </div>
   );
 }
