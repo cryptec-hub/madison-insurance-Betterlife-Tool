@@ -11,7 +11,7 @@ import {
 
 function App() {
   return (
-    <div className="App container my-24 mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className="App container my-8 md:my-24 mx-auto px-4 py-8 sm:px-6 lg:px-8">
       <SelectComponent
         inPatient={inPatient}
         outPatient={outPatient}

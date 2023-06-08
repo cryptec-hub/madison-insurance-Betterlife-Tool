@@ -102,7 +102,7 @@ export default function SelectComponent({
 
   return (
     <div className="flex flex-col justify-between items-center">
-      <div className="w-1/2 flex items-center space-x-2 pt-8">
+      <div className="w-full md:w-1/2 flex items-center space-x-2 pt-8">
         <h1 className="mr-14 w-1/4 text-lg">Number of Members</h1>
         <div className="w-full flex items-center  space-x-2">
           <Select
@@ -113,7 +113,7 @@ export default function SelectComponent({
           />
         </div>
       </div>
-      <div className="w-1/2 flex items-center space-x-2 pt-8">
+      <div className="w-full md:w-1/2 flex items-center space-x-2 pt-8">
         <h1 className="mr-2 w-1/4 text-lg">Inpatient</h1>
         <div className="w-full flex items-center  space-x-2">
           <Select
@@ -135,7 +135,7 @@ export default function SelectComponent({
         </div>
       </div>
 
-      <div className="w-1/2 flex items-center space-x-2 pt-8">
+      <div className="w-full md:w-1/2 flex items-center space-x-2 pt-8">
         <h1 className="mr-2 w-1/4 text-lg">Outpatient</h1>
         <div className="w-full flex items-center  space-x-2">
           <input
@@ -161,8 +161,8 @@ export default function SelectComponent({
         </div>
       </div>
 
-      <div className="w-1/2 flex items-center space-x-2 pt-8">
-        <h1 className="mr-2 w-1/4 ">Dental</h1>
+      <div className="w-full md:w-1/2 flex items-center space-x-2 pt-8">
+        <h1 className="mr-2 w-1/4 text-lg">Dental</h1>
         <div className="w-full flex items-center  space-x-2">
           <input
             type="checkbox"
@@ -187,7 +187,7 @@ export default function SelectComponent({
         </div>
       </div>
 
-      <div className="w-1/2 flex items-center justify-between space-x-2 pt-8">
+      <div className="w-full md:w-1/2 flex items-center space-x-2 pt-8">
         <h1 className="mr-2  w-1/4 text-lg">Optical</h1>
         <div className="w-full flex items-center  space-x-2">
           <input
@@ -213,7 +213,7 @@ export default function SelectComponent({
         </div>
       </div>
 
-      <div className="w-1/2 flex items-center space-x-2 justify-between pt-8">
+      <div className="w-full md:w-1/2 flex items-center space-x-2 pt-8">
         <h1 className="mr-2 w-1/4 text-lg">Maternity</h1>
         <div className="w-full flex items-center space-x-2">
           <input
