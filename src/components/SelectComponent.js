@@ -3,6 +3,7 @@ import Select from "react-select";
 import { useState } from "react";
 // import { extractValues } from "../ExtractValues";
 import IntersectionValueComponent from "../xlsx/IntersectionValue";
+import { Age } from "../xlsx/data";
 // import ReadData from "../xlsx/readData";
 
 export default function SelectComponent({
@@ -20,6 +21,10 @@ export default function SelectComponent({
   const [numberOfMembers, setNumberOfMembers] = useState({
     value: "M",
     label: "M",
+  });
+  const [ageValue, setAgeValue] = useState({
+    value: "Above18",
+    label: "18-50 Yrs",
   });
   const [outPatientValue, setOutPatientValue] = useState({
     value: 250000,
@@ -44,6 +49,8 @@ export default function SelectComponent({
   const [dentalSelected, setDentalSelected] = useState(false);
   const [opticalSelected, setOpticalSelected] = useState(false);
   const [maternitySelected, setMaternitySelected] = useState(false);
+  const [inPatientAgeValue, setInPatientAgeValue] = useState(0);
+  const [outPatientAgeValue, setOutPatientAgeValue] = useState(2);
 
   const handleInPatientChange = (selectedOption) => {
     setInPatientValue(selectedOption);
@@ -51,6 +58,16 @@ export default function SelectComponent({
 
   const handleNumberOfMembers = (selectedOption) => {
     setNumberOfMembers(selectedOption);
+  };
+  const handleAgeValue = (selectedOption) => {
+    setAgeValue(selectedOption);
+    if (ageValue.value === "Above18") {
+      setInPatientAgeValue(1);
+      setOutPatientAgeValue(3);
+    } else {
+      setInPatientAgeValue(0);
+      setOutPatientAgeValue(2);
+    }
   };
 
   const handleOutPatientChange = (selectedOption) => {
@@ -113,6 +130,18 @@ export default function SelectComponent({
           />
         </div>
       </div>
+
+      <div className="w-full md:w-1/2 flex items-center space-x-2 pt-8">
+        <h1 className="mr-14 w-1/4 text-lg">Principal Member Age</h1>
+        <div className="w-full flex items-center  space-x-2">
+          <Select
+            className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            options={Age}
+            value={ageValue}
+            onChange={handleAgeValue}
+          />
+        </div>
+      </div>
       <div className="w-full md:w-1/2 flex items-center space-x-2 pt-8">
         <h1 className="mr-2 w-1/4 text-lg">Inpatient</h1>
         <div className="w-full flex items-center  space-x-2">
@@ -129,7 +158,7 @@ export default function SelectComponent({
             <IntersectionValueComponent
               limitValue={inPatientValue.value}
               colValue={numberOfMembers.value}
-              sheetNumber={0}
+              sheetNumber={inPatientAgeValue}
             />
           </div>
         </div>
@@ -155,7 +184,7 @@ export default function SelectComponent({
             <IntersectionValueComponent
               limitValue={outPatientFinalValue}
               colValue={numberOfMembers.value}
-              sheetNumber={2}
+              sheetNumber={outPatientAgeValue}
             />
           </div>
         </div>

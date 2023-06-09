@@ -57,4 +57,8 @@ const Members = [
   { value: "M+6", label: "M+6" },
 ];
 
-export { inPatient, outPatient, Dental, Maternity, Optical, Members };
+const Age = [
+  { value: "Above18", label: "18-50 Yrs" },
+  { value: "Above51", label: "51-65 Yrs" },
+];
+export { inPatient, outPatient, Dental, Maternity, Optical, Members, Age };
