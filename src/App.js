@@ -11,8 +11,8 @@ import {
 
 function App() {
   return (
-    <div className="App container my-8 md:my-24 mx-auto px-4 py-4 sm:px-6 lg:px-8">
-      <div className="flex justify-center mb-4">
+    <div className="App container my-2 md:my-12 mx-auto px-4 py-1 sm:px-6 lg:px-8">
+      <div className="flex justify-center">
         <img
           src="Madison-Insurance-Company-Kenya.png"
           alt="Company Logo"
